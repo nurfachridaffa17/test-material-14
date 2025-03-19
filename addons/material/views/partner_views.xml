@@ -1,0 +1,64 @@
+<odoo>
+
+    <record id="view_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="is_supplier" />
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="partner_supplier_tree_view">
+        <field name="name">Supplier Tree</field>
+        <field name="model">res.partner</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Supplier">
+                <field name="name"/>
+                <field name="street"/>
+                <field name="city"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="partner_supplier_search_view">
+        <field name="name">Supplier Search</field>
+        <field name="model">res.partner</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="partner_supplier_kanban_view">
+        <field name="name">Supplier Kanban</field>
+        <field name="model">res.partner</field>
+        <field name="type">kanban</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name" />
+            </kanban>
+        </field>
+    </record>
+
+    <record id="partner_action_supplier" model="ir.actions.act_window">
+        <field name="name">Supplier</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="partner_supplier_tree_view" />
+        <field name="domain" eval="[('is_supplier', '=', True)]" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first supplier
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_material_supplier" name="Supplier" parent="menu_material" sequence="20" action="partner_action_supplier" />
+    
+</odoo>

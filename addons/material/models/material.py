@@ -10,7 +10,7 @@ class Material(models.Model):
     default_code = fields.Char(string='Material Code', required=True)
     material_type = fields.Selection([('fabric', 'Fabric'), ('jeans', 'Jeans'), ('contton', 'Cotton')], default='fabric', required=True)
     material_buying_price = fields.Float(string='Material Buying Price', required=True)
-    supplier_id = fields.Many2one('res.partner', string='Supplier', required=True)
+    supplier_id = fields.Many2one('res.partner', string='Supplier', required=True, domain=[('is_supplier', '=', True)])
     active = fields.Boolean(string='Active', default=True)
 
     @api.model

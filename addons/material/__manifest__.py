@@ -12,11 +12,12 @@
     'data': [
         'security/ir.model.access.csv',
         'views/material_views.xml',
+        'views/partner_views.xml',
     ],
     'assets': {
     },
 
     'auto_install': False,
-    'application': False,
+    'application': True,
     'installable': True
 }
