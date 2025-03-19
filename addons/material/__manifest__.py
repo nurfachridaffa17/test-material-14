@@ -10,6 +10,8 @@
         'base',
     ],
     'data': [
+        'security/ir.model.access.csv',
+        'views/material_views.xml',
     ],
     'assets': {
     },

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="material_material_form_view">
+            <field name="name">Material Form</field>
+            <field name="model">material.material</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Material">
+                    <sheet>
+                        <group colspan="2">
+                            <field name="name" />
+                        </group>
+                        <group colspan="2">
+                            <field name="default_code" />
+                        </group>
+                        <group colspan="2">
+                            <field name="material_type" />
+                        </group>
+                        <group colspan="2">
+                            <field name="material_buying_price" />
+                        </group>
+                        <group colspan="2">
+                            <field name="supplier_id" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="material_material_tree_view">
+            <field name="name">Material Tree</field>
+            <field name="model">material.material</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="default_code" />
+                    <field name="name" />
+                    <field name="material_type" />
+                    <field name="material_buying_price" />
+                    <field name="supplier_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="material_material_search_view">
+            <field name="name">Material Search</field>
+            <field name="model">material.material</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" />
+                    <field name="default_code" />
+                    <field name="material_type" />
+                    <field name="material_buying_price" />
+                    <field name="supplier_id" />
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="material_material_kanban_view">
+            <field name="name">Material Kanban</field>
+            <field name="model">material.material</field>
+            <field name="type">kanban</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="default_code" />
+                    <field name="name" />
+                    <field name="material_type" />
+                    <field name="material_buying_price" />
+                    <field name="supplier_id" />
+                </kanban>
+            </field>
+        </record>
+
+        <record id="material_action_material" model="ir.actions.act_window">
+            <field name="name">Material</field>
+            <field name="res_model">material.material</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="material_material_tree_view" />
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create your first material
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="root_material_material_menu" name="Material" web_icon="material,static/description/icon.png" sequence="50"/>
+
+        <menuitem id="menu_material" name="Material" parent="root_material_material_menu" sequence="10" />
+
+        <menuitem id="menu_material_material" name="Material" parent="menu_material" sequence="10" action="material_action_material" />
+
+    </data>
+</odoo>
