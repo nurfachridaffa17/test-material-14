@@ -29,12 +29,12 @@ sudo chmod 777 data/odoo
 
 ## Screenshots
 
-![ERD](ERD_MATERIAL.png)
-![APPLICATION](FIRST.png)
-![](SECOND.png)
-![](THIRD.png)
-![](FOURTH.png)
-![](FIFTH.png)
+![ERD](image/ERD_MATERIAL.png)
+![APPLICATION](image/FIRST.png)
+![](image/SECOND.png)
+![](image/THIRD.png)
+![](image/FOURTH.png)
+![](image/FIFTH.png)
 
 ## Tech Stack
 
