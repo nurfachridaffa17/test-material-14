@@ -33,7 +33,7 @@
             <field name="model">material.material</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="Material">
+                <tree>
                     <field name="default_code" />
                     <field name="name" />
                     <field name="material_type" />
@@ -49,6 +49,9 @@
             <field name="type">search</field>
             <field name="arch" type="xml">
                 <search>
+                    <filter string="Jeans" name="jeans" domain="[('material_type', '=', 'jeans')]"/>
+                    <filter string="Fabric" name="fabric" domain="[('material_type', '=', 'fabric')]"/>
+                    <filter string="Cotton" name="cotton" domain="[('material_type', '=', 'cotton')]"/>
                     <field name="name" />
                     <field name="default_code" />
                     <field name="material_type" />
@@ -78,6 +81,7 @@
             <field name="res_model">material.material</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="material_material_tree_view" />
+            <field name="search_view_id" ref="material_material_search_view" />
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create your first material
