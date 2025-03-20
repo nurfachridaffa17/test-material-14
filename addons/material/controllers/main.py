@@ -27,6 +27,35 @@ class MaterialController(http.Controller):
         materials = [material.read() for material in get_all_materials]
         return {'success': True, 'materials': materials}
     
+    @http.route('/api/material/filter', type='json', auth='user', methods=['GET'], csrf=False)
+    def filter_materials(self, **post):
+        name = post.get('name')
+        material_type = post.get('material_type')
+        supplier_id = post.get('supplier_id')
+
+        domain = []
+
+        if name:
+            domain.append(('name', 'ilike', name))
+        if material_type:
+            domain.append(('material_type', '=', material_type))
+        if supplier_id:
+            domain.append(('supplier_id', '=', supplier_id))
+
+        materials = request.env['material.material'].sudo().search(domain)
+
+        material_data = [{
+            'id': material.id,
+            'name': material.name,
+            'default_code': material.default_code,
+            'material_type': material.material_type,
+            'material_buying_price': material.material_buying_price,
+            'supplier_id': material.supplier_id.id
+        } for material in materials]
+        
+        return {'success': True, 'materials': material_data}
+
+
     @http.route('/api/material/<int:material_id>', type='json', auth='user', methods=['GET'], csrf=False)
     def get_material(self, material_id, **post):
         material = request.env['material.material'].sudo().search([('id', '=', material_id)], limit=1)
@@ -111,6 +140,42 @@ class SupplierController(http.Controller):
         get_all_states = request.env['res.country.state'].sudo().search([('country_id', '=', country_id)])
         states = [state.read() for state in get_all_states]
         return {'success': True, 'states': states}
+    
+    @http.route('/api/supplier/filter', type='json', auth='user', methods=['GET'], csrf=False)
+    def filter_suppliers(self, **post):
+        name = post.get('name')
+        country_id = post.get('country_id')
+        state_id = post.get('state_id')
+        city = post.get('city')
+
+        domain = []
+
+        if name:
+            domain.append(('name', 'ilike', name))
+        if country_id:
+            domain.append(('country_id', '=', country_id))
+        if state_id:
+            domain.append(('state_id', '=', state_id))
+        if city:
+            domain.append(('city', '=', city))
+
+        if not domain:
+            domain = []
+        
+        domain.append(('is_supplier', '=', True))
+        suppliers = request.env['res.partner'].sudo().search(domain)
+
+        supplier_data = [{
+            'id': supplier.id,
+            'name': supplier.name,
+            'street': supplier.street,
+            'city': supplier.city,
+            'state_id': supplier.state_id.id,
+            'zip': supplier.zip,
+            'country_id': supplier.country_id.id
+        } for supplier in suppliers]
+        
+        return {'success': True, 'suppliers': supplier_data}
         
     @http.route('/api/supplier/<int:supplier_id>', type='json', auth='user', methods=['GET'], csrf=False)
     def get_supplier(self, supplier_id, **post):
