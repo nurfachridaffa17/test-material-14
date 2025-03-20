@@ -16,6 +16,7 @@ class Material(models.Model):
     @api.model
     def create(self, vals):
         if vals.get('default_code'):
+            # Cek apakah material code sudah ada
             default_code = self.env['material.material'].search([('default_code', '=', vals['default_code'])])
             if default_code:
                 raise UserError('Material code already exists')
@@ -28,6 +29,7 @@ class Material(models.Model):
     @api.model
     def write(self, vals):
         if vals.get('default_code'):
+            # Cek apakah material code sudah ada
             default_code = self.env['material.material'].search([('default_code', '=', vals['default_code'])])
             if default_code:
                 raise UserError('Material code already exists')
