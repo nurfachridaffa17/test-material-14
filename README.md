@@ -29,7 +29,10 @@ sudo chmod 777 data/odoo
 
 ## Screenshots
 
+- ### ERD
 ![ERD](image/ERD_MATERIAL.png)
+
+- ### Application
 ![APPLICATION](image/FIRST.png)
 ![](image/SECOND.png)
 ![](image/THIRD.png)
