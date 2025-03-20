@@ -79,9 +79,15 @@ class MaterialController(http.Controller):
             return {'success': False, 'message': 'Error update material'}
         
     @http.route('/api/material/<int:material_id>', type='json', auth='user', methods=['DELETE'], csrf=False)
-    def delete_material(self, material_id, **post):
+    def hard_delete_material(self, material_id, **post):
         material = request.env['material.material'].sudo().search([('id', '=', material_id)], limit=1)
         material.unlink()
+        return {'success': True}
+    
+    @http.route('/api/material/<int:material_id>', type='json', auth='user', methods=['PATCH'], csrf=False)
+    def soft_delete_material(self, material_id, **post):
+        material = request.env['material.material'].sudo().search([('id', '=', material_id)], limit=1)
+        material.write({'active': False})
         return {'success': True}
 
 
@@ -177,7 +183,13 @@ class SupplierController(http.Controller):
         
     
     @http.route('/api/supplier/<int:supplier_id>', type='json', auth='user', methods=['DELETE'], csrf=False)
-    def delete_supplier(self, supplier_id, **post):
+    def hard_delete_supplier(self, supplier_id, **post):
         supplier = request.env['res.partner'].sudo().search([('id', '=', supplier_id)], limit=1)
         supplier.unlink()
+        return {'success': True}
+    
+    @http.route('/api/supplier/<int:supplier_id>', type='json', auth='user', methods=['PATCH'], csrf=False)
+    def soft_delete_supplier(self, supplier_id, **post):
+        supplier = request.env['res.partner'].sudo().search([('id', '=', supplier_id)], limit=1)
+        supplier.write({'active': False})
         return {'success': True}
