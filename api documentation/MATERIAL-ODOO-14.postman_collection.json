@@ -1,0 +1,602 @@
+{
+	"info": {
+		"_postman_id": "2a077693-ed81-4984-a219-a18a0c12bf55",
+		"name": "MATERIAL-ODOO-14",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25459882"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "LOGIN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>Success</th>",
+									"        <th>Message</th>",
+									"    </tr>",
+									"    <tr>",
+									"        <td>{{response.result.success}}</td>",
+									"        <td>{{response.result.message}}</td>",
+									"    </tr>",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return {response: pm.response.json()}",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n        \"params\": \n        {\n            \"login\": \"admin@mail.com\",\n            \"password\": \"admin\",\n            \"db\": \"TEST-MATERIAL-14\"\n        }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/authentication",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"authentication"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGOUT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MATERIAL",
+			"item": [
+				{
+					"name": "GET ALL MATERIAL",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/material",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"material"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET MATERIAL BY ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/material/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"material",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET MATERIAL FILTER",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\" : {\n        \"name\" : \"\",\n        \"material_type\" : \"cotton\",\n        \"supplier_id\" : \"\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/material/filter",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"material",
+								"filter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE MATERIAL BY ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/material/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"material",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SOFT DELETE MATERIAL BY ID",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/material/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"material",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE MATERIAL",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\" : {\n        \"name\" : \"Celana Jeans\",\n        \"default_code\" : \"110-001\",\n        \"material_type\" : \"jeans\",\n        \"material_buying_price\" : 290,\n        \"supplier_id\" : 9\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/material",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"material"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE MATERIAL",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\" : {\n        \"name\" : \"Celana Jeans\",\n        \"default_code\" : \"110-001\",\n        \"material_type\" : \"jeans\",\n        \"material_buying_price\" : 290,\n        \"supplier_id\" : 9\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/material/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"material",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "SUPPLIER",
+			"item": [
+				{
+					"name": "GET ALL SUPPLIER",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/supplier",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"supplier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SUPPLIER FILTER",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\" : {\n        \"name\" : \"Grosir\",\n        \"city\" : \"\",\n        \"state_id\" : 0,\n        \"country_id\" : 0\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/supplier/filter",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"supplier",
+								"filter"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL SUPPLIER COUNTRY",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/supplier/country",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"supplier",
+								"country"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL SUPPLIER STATE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\" : {\n        \"country_id\" : 100\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/supplier/state",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"supplier",
+								"state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET SUPPLIER BY ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/supplier/7",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"supplier",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE SUPPLIER BY ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/supplier/9",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"supplier",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SOFT DELETE SUPPLIER BY ID",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/supplier/9",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"supplier",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE SUPPLIER",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\" : {\n        \"name\" : \"Grosir baju anak\",\n        \"address_type\" : \"contact\", \n        \"company_type\" : \"person\",\n        \"street\" : \" perum legok permai, blok A1, Jl. Assana Blk. B7, Legok, Kec. Legok\",\n        \"city\" : \"Kabupaten Tangerang\",\n        \"state_id\" : 616,\n        \"zip\" : \"15820\",\n        \"country_id\" : 100\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/supplier",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"supplier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE SUPPLIER",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"params\" : {\n        \"street\" : \"Jln.Duri Selatan I No.27C, Duri Sel., Kec. Tambora\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8035/api/supplier/12",
+							"host": [
+								"localhost"
+							],
+							"port": "8035",
+							"path": [
+								"api",
+								"supplier",
+								"12"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
